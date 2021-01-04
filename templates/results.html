@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script type="text/javascript">
+      function validate_1(){
+        var inputText = document.getElementById("cityname");
+        var regx = /[^0-9]+/g;
+        if(inputText.value.trim() == "")
+        {
+          cityname.style.border = "2px solid red";
+          alert ("Please enter valid City Name in the input field");
+          return false;
+        }
+        else{
+              if(regx.test(inputText.value))
+                  {
+                    
+                   
+                    return true;
+                    
+                  }
+               else{
+                    cityname.style.border = "2px solid red";
+                    alert ("Please enter valid City(Do not enter Digits) in the input field");
+                    return false;
+                   }
+            }
+      }
+  
+      </script>
+    <title>Doctors</title>
+  </head>
+  <body>
+    <form
+      onsubmit="return validate_1()"
+      action="{{ url_for('results')}}"
+      method="POST"
+    >
+      <div class="inputs" style="margin-top: 50px; text-align:center;">
+                  <span>
+                     <input
+                      type="text"
+                      name="location"
+                      placeholder="Enter Your City"
+                      id="cityname"
+                      style="height:30px;width: 20em; border:1px solid slateblue;border-radius: 10px;"/>
+            
+                      <button type="submit" >Submit</button>
+                    </span>
+      
+    </form>
+    <br /><br />
+    <h2 style="color: blue;text-align: center">
+      The Doctors for {{system}}
+    </h2>
+
+    <div class="tables">
+      <table id="names">
+        <!-- Table headers -->
+        <th>
+          <tr style="color: green; ">
+            <td>Doctor</td>
+      </tr>
+    </th>
+
+        <!-- For loop logic of jinja template -->
+      
+        {% for each in names %}
+
+        <!-- table rows -->
+        <tr>
+          <td>{{each}}</td>
+
+          {%endfor%}
+        </tr>
+        
+      </table>
+
+      <table>
+        <!-- Table headers -->
+        <th>
+          <tr style="color: green; ">
+            <td>Contact</td>
+          </tr>
+        </th>
+
+        <!-- For loop logic of jinja template -->
+
+        {% for each_n in contacts %}
+
+        <!-- table rows -->
+        <tr>
+          <td>{{each_n}}</td>
+
+          {%endfor%}
+        </tr>
+      </table>
+      <table id="city">
+        <!-- Table headers -->
+        <th>
+          <tr style="color: green; ">
+            <td>City</td>
+          </tr>
+        </th>
+
+        <!-- For loop logic of jinja template -->
+
+        {% for each_m in location %}
+
+        <!-- table rows -->
+        <tr>
+          <td>{{each_m}}</td>
+
+          {%endfor%}
+        </tr>
+      </table>
+    </div>
+  </body>
+  <style>
+    textarea:focus,
+    input:focus {
+      outline: none;
+    }
+    form {
+      text-align: center;
+      margin-top: 10em;
+      margin-right: auto;
+      margin-left: auto;
+      width: 25%;
+    }
+    button {
+      border: none;
+      background-color: #0067cf;
+      color: white;
+      height: 30px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .tables {
+      text-align: center;
+      display: flex;
+      /* margin-left: 10em; */
+      /* justify-content: space-around */
+    
+    }
+    #names{
+      flex:3;
+    }
+    #city{
+      flex:2;
+    }
+
+    table {
+      font-size: 16px;
+    }
+    th:tr {
+      color: blue;
+      background-color: rgba(150, 150, 150, 0.5);
+    }
+    tr:nth-of-type(2n) {
+      border: 1px solid black;
+    }
+
+    td {
+      padding: 8px 8px;
+      border: 1px solid black;
+      font-size: 20px;
+    }
+  </style>
+</html>

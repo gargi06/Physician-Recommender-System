@@ -1,0 +1,8 @@
+body {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.navbar {
+  background-color: #0067cf;
+  margin-top: 2em;
+}
